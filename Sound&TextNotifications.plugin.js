@@ -134,12 +134,12 @@ class VoiceChatNotifications {
                 if(lastStates[id] == undefined) {
                     if(!this.settings.logConnections) continue;
                     let user = getUser(id), channel = getChannel(newStates[id].channelId);
-                    if(!this.settings.DisplayNotifications) {
+                    if(this.settings.DisplayNotifications) {
                     if(user && channel) {
                         if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} joined ${channel.name}`, { silent : true, icon : user.getAvatarURL() });
                         this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : `Joined ${channel.name}` });
                     };}
-                    if(!this.settings.PlayNotifications) { 
+                    if(this.settings.PlayNotifications) { 
                         if(user && channel) {
                          if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") 
                          var msg = new SpeechSynthesisUtterance(user.username + "has connected to your channel");
@@ -151,12 +151,12 @@ class VoiceChatNotifications {
                     if(this.settings.logMoves && lastStates[id].channelId != newStates[id].channelId) {
 
                         let user = getUser(id), channel = getChannel(newStates[id].channelId);
-                        if(!this.settings.DisplayNotifications) {
+                        if(this.settings.DisplayNotifications) {
                          if(user && channel) {
                           if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} moved to ${channel.name}`, { silent : true, icon : user.getAvatarURL() });
                           this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : `Moved to ${channel.name}` });
                     };}
-                        if(!this.settings.PlayNotifications) {
+                        if(this.settings.PlayNotifications) {
                         if(user && channel) {
                         if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd")
                             var msg = new SpeechSynthesisUtterance(user.username + "moved to" + channel.name);
@@ -171,13 +171,13 @@ class VoiceChatNotifications {
                     if(this.settings.logServerMuteDeaf && lastStates[id].deaf != newStates[id].deaf) {
                         
                         let user = getUser(id);
-                        if(!this.settings.DisplayNotifications) {
+                        if(this.settings.DisplayNotifications) {
 
                         if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} ${newStates[id].deaf ? "server deafened" : "server undeafened"}`, { silent : true, icon : user.getAvatarURL() });
                             this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : newStates[id].deaf ? "Server deafened" : "Server undeafened" });                           
                         };}
-                        if(!this.settings.PlayNotifications) {
+                        if(this.settings.PlayNotifications) {
                         if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd")                          
                             var msg = new SpeechSynthesisUtterance(newStates[id].deaf ? "Server deafened" + user.username : "Server undeafened" + user.username);
@@ -189,14 +189,14 @@ class VoiceChatNotifications {
                     if(this.settings.logServerMuteDeaf && lastStates[id].mute != newStates[id].mute) {
                         
                         let user = getUser(id);
-                        if(!this.settings.DisplayNotifications) {
+                        if(this.settings.DisplayNotifications) {
 
                         if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} ${newStates[id].mute ? "server muted" : "server unmuted"}`, { silent : true, icon : user.getAvatarURL() });
                             this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : newStates[id].mute ? "Server muted" : "Server unmuted" });
 
                         };}
-                        if(!this.settings.PlayNotifications) {
+                        if(this.settings.PlayNotifications) {
 
                         if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") 
@@ -211,12 +211,12 @@ class VoiceChatNotifications {
                     if(this.settings.logDeafens && lastStates[id].selfDeaf != newStates[id].selfDeaf) {
 
                         let user = getUser(id);
-                        if(!this.settings.DisplayNotifications) {
+                        if(this.settings.DisplayNotifications) {
                         if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} ${newStates[id].selfDeaf ? "deafened" : "undeafened"}`, { silent : true, icon : user.getAvatarURL() });
                             this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : newStates[id].selfDeaf ? "Deafened" : "Undeafened" });
                         };}
-                        if(!this.settings.PlayNotifications) {
+                        if(this.settings.PlayNotifications) {
                          if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd")
                             var msg = new SpeechSynthesisUtterance(newStates[id].selfDeaf ? user.username + "deafened" : user.username + "undeafened");
@@ -230,12 +230,12 @@ class VoiceChatNotifications {
                     if(this.settings.logMutes && lastStates[id].selfMute != newStates[id].selfMute) {
 
                         let user = getUser(id);
-                        if(!this.settings.DisplayNotifications) {
+                        if(this.settings.DisplayNotifications) {
                         if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} ${newStates[id].selfMute ? "muted" : "unmuted"}`, { silent : true, icon : user.getAvatarURL() });
                             this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : newStates[id].selfMute ? "Muted" : "Unmuted" });
                         };}
-                        if(!this.settings.PlayNotifications) {
+                        if(this.settings.PlayNotifications) {
                             if(user) {
                             if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") 
                             var msg = new SpeechSynthesisUtterance(newStates[id].selfMute ? user.username + "muted" : user.username + "unmuted");
@@ -252,23 +252,20 @@ class VoiceChatNotifications {
             for(let id in lastStates) {
 
                 if(localUser.id == id || !this.settings.logConnections) continue;
-                if(!this.settings.DisplayNotifications) {
+                if(this.settings.DisplayNotifications) {
 
                 if(newStates[id] == undefined && id != localUser.id) {
                     let user = getUser(id), channel = getChannel(lastStates[id].channelId);
                     if(user && channel) {
                         if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} left ${channel.name}`, { silent : true, icon : user.getAvatarURL() });
                         this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : `Left ${channel.name}` });
-                        var msg = new SpeechSynthesisUtterance(user.username + "has disconnected from your channel");
-                        window.speechSynthesis.speak(msg);
                     }    
                  };}
-                 if(!this.settings.PlayNotifications) {
+                 if(this.settings.PlayNotifications) {
                  if(newStates[id] == undefined && id != localUser.id) {
                     let user = getUser(id), channel = getChannel(lastStates[id].channelId);
                     if(user && channel) {
-                        if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd") new Notification(`${user.username} left ${channel.name}`, { silent : true, icon : user.getAvatarURL() });
-                        this.log.push({ avatar : user.getAvatarURL(), username : user.username, timestamp : new Date().toLocaleTimeString(), text : `Left ${channel.name}` });
+                        if(!this.settings.suppressInDnd || NeatoLib.getLocalStatus() != "dnd")
                         var msg = new SpeechSynthesisUtterance(user.username + "has disconnected from your channel");
                         window.speechSynthesis.speak(msg);
                     }    
