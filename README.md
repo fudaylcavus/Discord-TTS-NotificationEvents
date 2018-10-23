@@ -13,6 +13,6 @@ Last Update Changes (23/10/2018) :
 - Added Option for choose Notification type (Play, Display). You can use both
 
 If discord not remember your settings, open console (CTRL + Shift + I), then paste 
-' NeatoLib.hasRequiredLibVersion({ getName: () => {} }, "999.999.999") '.
+`` NeatoLib.hasRequiredLibVersion({ getName: () => {} }, "999.999.999") ``.
 It will fix it.
 
